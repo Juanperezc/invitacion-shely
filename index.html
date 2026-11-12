@@ -27,12 +27,19 @@ p.note{max-width:34ch;color:var(--muted);font-size:1.05rem;line-height:1.5;margi
 #ok{color:var(--lamp);font-weight:700;margin:0}
 
 /* animación */
-.walker{animation:walk 13s ease-in-out forwards}
-.nightfall{opacity:0;animation:night 13s linear forwards}
-.sun{animation:sunset 13s linear forwards}
+.walker{animation:walk 9s ease-in-out forwards}
+.nightfall{opacity:0;animation:night 9s linear forwards}
+.sun{animation:sunset 9s linear forwards}
+.petal{animation:petal 6s linear infinite}
 body:not(.opened) .nightfall,body:not(.opened) .sun{animation-play-state:paused}
-@keyframes night{0%,45%{opacity:0}75%,100%{opacity:1}}
-@keyframes sunset{0%,40%{transform:translateY(0)}70%,100%{transform:translateY(260px)}}
+@keyframes night{0%,15%{opacity:0}70%,100%{opacity:1}}
+@keyframes sunset{0%,10%{transform:translateY(0)}60%,100%{transform:translateY(260px)}}
+@keyframes petal{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:1}100%{transform:translate(-50px,200px) rotate(260deg);opacity:0}}
+.ticket{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 22px;padding:16px 22px;border-radius:18px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.ticket .sep{width:1px;align-self:stretch;background:rgba(255,255,255,.18)}
+.ticket .k{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lamp);font-weight:700}
+.ticket .v{font-family:var(--display);font-weight:800;font-size:1.25rem}
+#ok{animation:rise .6s ease both}
 .stops{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;width:100%}
 .stop{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;text-align:left;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
 .stop .ico{grid-row:span 3;font-size:2rem}
@@ -47,8 +54,8 @@ body:not(.opened) .nightfall,body:not(.opened) .sun{animation-play-state:paused}
 .tail{transform-origin:0 0;animation:wag 1.2s ease-in-out infinite alternate}
 .star{animation:twinkle 2.4s ease-in-out infinite alternate}
 .glow{animation:glow 3s ease-in-out infinite alternate}
-/* entran, paran en Cuervo de mañana, siguen hasta Namida de noche */
-@keyframes walk{0%{transform:translateX(-640px)}22%,42%{transform:translateX(-340px)}100%{transform:translateX(0)}}
+/* cruzan Palermo al atardecer y llegan a la puerta de Namida de noche */
+@keyframes walk{from{transform:translateX(-640px)}to{transform:translateX(80px)}}
 @keyframes bob{to{transform:translateY(-4px)}}
 @keyframes step{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
 @keyframes wag{to{transform:rotate(14deg)}}
@@ -93,7 +100,7 @@ body:not(.opened) .walker{animation-play-state:paused}
 </div>
 
 <div class="wrap" id="inv" hidden>
-  <svg class="scene" viewBox="0 0 800 450" role="img" aria-label="Dos suricatas caminan de noche por Palermo, entre un jacarandá y un farol, hacia la puerta iluminada de Namida Sushi">
+  <svg class="scene" viewBox="0 0 800 450" role="img" aria-label="Al atardecer, dos suricatas caminan por Palermo entre un jacarandá y un farol, y llegan de noche a la puerta de Namida Sushi">
     <defs>
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2350"/><stop offset="1" stop-color="#3a2f5e"/></linearGradient>
       <radialGradient id="lampG"><stop offset="0" stop-color="#ffcf7a" stop-opacity=".9"/><stop offset="1" stop-color="#ffb84d" stop-opacity="0"/></radialGradient>
@@ -115,9 +122,9 @@ body:not(.opened) .walker{animation-play-state:paused}
         </g>
       </g>
     </defs>
-    <!-- mañana -->
-    <rect width="800" height="450" fill="#9fd3f0"/>
-    <rect y="220" width="800" height="230" fill="#f6c99a" opacity=".6"/>
+    <!-- atardecer -->
+    <rect width="800" height="450" fill="#f2a477"/>
+    <rect y="160" width="800" height="290" fill="#f7cf8f" opacity=".7"/>
     <g class="sun"><circle cx="140" cy="90" r="40" fill="#ffd45c"/><circle cx="140" cy="90" r="56" fill="#ffd45c" opacity=".25"/></g>
     <g fill="#fff" opacity=".9"><ellipse cx="420" cy="70" rx="50" ry="16"/><ellipse cx="450" cy="58" rx="30" ry="16"/><ellipse cx="660" cy="110" rx="40" ry="12"/></g>
     <!-- noche: aparece mientras caminan hacia Namida -->
@@ -131,22 +138,15 @@ body:not(.opened) .walker{animation-play-state:paused}
       <circle class="star" style="animation-delay:2s" cx="330" cy="30" r="1.5"/>
     </g>
     </g>
-    <!-- Cuervo Café: primera parada -->
-    <g transform="translate(20 200)">
-      <rect x="0" y="30" width="200" height="132" fill="#2e2a28"/>
-      <rect x="-8" y="22" width="216" height="14" fill="#1b1817"/>
-      <rect x="18" y="44" width="164" height="30" rx="5" fill="#f6efe2"/>
-      <text x="100" y="65" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-weight="800" font-size="17" fill="#1b1817" letter-spacing="2">CUERVO CAFÉ</text>
-      <path d="M8 84 h184 l-10 18 h-164 z" fill="#3d5a40"/>
-      <path d="M26 84 l-6 18 M60 84 l-4 18 M100 84 v18 M140 84 l4 18 M174 84 l6 18" stroke="#2d4430" stroke-width="3"/>
-      <rect x="120" y="106" width="56" height="56" rx="4" fill="#ffd98a"/>
-      <rect x="22" y="110" width="80" height="34" rx="3" fill="#ffe7b0" opacity=".85"/>
-      <!-- taza con vapor -->
-      <g transform="translate(62 128)"><rect x="-10" y="-8" width="20" height="16" rx="3" fill="#fff"/><path d="M10 -4 q7 0 7 6 q0 6 -7 6" stroke="#fff" stroke-width="3" fill="none"/>
-        <path class="glow" d="M-4 -12 q-4 -6 0 -12 M4 -12 q-4 -6 0 -12" stroke="#fff" stroke-width="2" fill="none"/></g>
+    <!-- casas bajas de Palermo al fondo -->
+    <g fill="#2a2140" opacity=".85">
+      <rect x="0" y="250" width="90" height="112"/><rect x="95" y="226" width="70" height="136"/><rect x="170" y="262" width="60" height="100"/>
+      <path d="M95 226 l35 -22 l35 22 z"/>
     </g>
+    <g fill="#ffd98a" class="glow"><rect x="20" y="275" width="16" height="22"/><rect x="54" y="275" width="16" height="22"/><rect x="115" y="250" width="14" height="20"/><rect x="185" y="285" width="14" height="20"/></g>
     <!-- jacarandá de Palermo -->
-    <g transform="translate(320 362)">
+    <g transform="translate(300 362)">
+      <g fill="#c49af0"><circle class="petal" cx="-30" cy="-150" r="4"/><circle class="petal" style="animation-delay:1.5s" cx="20" cy="-170" r="3.5"/><circle class="petal" style="animation-delay:3s" cx="50" cy="-140" r="4"/><circle class="petal" style="animation-delay:4.2s" cx="-10" cy="-130" r="3"/></g>
       <path d="M0 0 C-4 -60 6 -110 -2 -150 M0 -90 q30 -20 46 -50 M-2 -110 q-28 -14 -40 -40" stroke="#3b2a20" stroke-width="9" fill="none" stroke-linecap="round"/>
       <g fill="#9b6fd6"><circle cx="-40" cy="-160" r="34"/><circle cx="10" cy="-185" r="40"/><circle cx="52" cy="-150" r="32"/><circle cx="-6" cy="-140" r="30"/></g>
       <g fill="#c49af0"><circle cx="-24" cy="-176" r="14"/><circle cx="26" cy="-196" r="12"/><circle cx="48" cy="-162" r="10"/><circle cx="-52" cy="-148" r="9"/></g>
@@ -200,12 +200,15 @@ body:not(.opened) .walker{animation-play-state:paused}
 
   <p class="eyebrow">Palermo · Buenos Aires</p>
   <h1><span>Shely</span>, estás invitado</h1>
-  <p class="note">a un día de suricatas por Palermo, con dos paradas</p>
-  <ul class="stops">
-    <li class="stop"><span class="ico" aria-hidden="true">☕</span><span class="when">Por la mañana</span><span class="what">Café en Cuervo</span><span class="where">Palermo</span></li>
-    <li class="stop"><span class="ico" aria-hidden="true">🍣</span><span class="when">9:00 PM</span><span class="what">Sushi en Namida</span><span class="where">Palermo</span></li>
-  </ul>
-  <p class="note">Arrancamos con café y cerramos con sushi. Ponete la corbata y vení.</p>
+  <p class="note">a una noche de sushi entre suricatas</p>
+  <div class="ticket">
+    <div><span class="k">Dónde</span><span class="v">Namida Sushi Bar</span></div>
+    <span class="sep" aria-hidden="true"></span>
+    <div><span class="k">Hora</span><span class="v">9:00 PM</span></div>
+    <span class="sep" aria-hidden="true"></span>
+    <div><span class="k">Barrio</span><span class="v">Palermo, BA</span></div>
+  </div>
+  <p class="note">Ya vamos cruzando Palermo. Ponete la corbata y vení con hambre. 🍣</p>
   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
     <button class="btn" id="go" type="button">¡Ahí estaré!</button>
     <button class="btn ghost" id="music" type="button" aria-pressed="false">♪ Poner música</button>
